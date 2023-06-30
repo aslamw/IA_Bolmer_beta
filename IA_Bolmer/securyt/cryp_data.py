@@ -1,4 +1,4 @@
-import base64
+import base64, os
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -20,8 +20,15 @@ def generate_key(password, salt):
 
 
 
-def decrypt_message(file, key):
+def decrypt_message(file, key) -> list:
     """Descriptografa uma mensagem utilizando a chave fornecida"""
+    
+    if not os.path.exists(file):
+        if (resul := input('arquivo ou caminho errado, desejá criar EX:(s , n)')):
+            with open(file, 'wb') as arq:
+                arq.write(b'')
+        return []
+            
     with open(file, 'rb') as arq:
         message = arq.read()
         
@@ -33,6 +40,14 @@ def decrypt_message(file, key):
 
 def encrypt_message(file, key, message = False, file_message = False):
     """Criptografa uma mensagem utilizando a chave fornecida"""
+    
+    if not os.path.exists(file):
+        result = input('arquivo ou caminho errado, desejá criar EX:(s , n)')
+        
+        if result == 's':
+            with open(file, 'wb') as arq:
+                arq.write(b'')
+        return []
     
     if message:
         data = decrypt_message(file,key)

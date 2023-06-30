@@ -1,0 +1,2 @@
+limpar:os.system('cls')
+teste:print('de boa')

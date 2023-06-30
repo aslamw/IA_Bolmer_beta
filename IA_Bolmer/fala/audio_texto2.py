@@ -7,7 +7,7 @@ import pyaudio
 
 vosk.SetLogLevel(-1)
 
-if not os.path.exists(r"./pt"):
+if not os.path.exists(r"./pt2"):
         print ("Modelo em portugues nao encontrado.")
         exit (1)
 

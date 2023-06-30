@@ -1,1 +1,6 @@
 deu bom
+
+def <nome_soma> (a,b):ap
+    return a + b
+
+<nome_soma>(<valor1:int>, <valor2:int>)

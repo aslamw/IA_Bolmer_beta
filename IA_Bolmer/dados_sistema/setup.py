@@ -1,4 +1,4 @@
-import platform
+import platform, os
     
 class typeSystem(object):
     
@@ -7,10 +7,13 @@ class typeSystem(object):
         self.command :str = self.get_comands()
     
     def get_comands(self):
+        if not os.path.exists('./data/syswin.dll'):
+            with open('./data/syswin.dll','w') as arq:
+                arq.write('')
         
         match self.system:
             case "Windows":
-                with open("./dados/syswin.dll" , "r") as arq:
+                with open("./data/syswin.dll" , "r") as arq:
                     return arq.read()
                 
 if __name__ == "__main__":

@@ -4,8 +4,8 @@
 """
 import os, datetime, gc, logging
 from fala import test_speack
-from dados_sistema import mySystem,typeSystem
-from .securyt import generate_key
+from dados_sistema import mySystem, typeSystem
+from securyt import generate_key
 
 class Bolmer(mySystem, typeSystem):
     
@@ -18,18 +18,23 @@ class Bolmer(mySystem, typeSystem):
         self.happy :int = 0
         self.sadness :int = 0
         self.doubt :int = 10
-        self.key = generate_key('','')
+        self.state_mode :str = 'speack'
+        self.key = generate_key('marcos1999',b"1234567890123456")
         
     def speack(self) -> str:
-        data :str = test_speack()
-        print(data)
         
-        if data == 'memória ram total':
-            print(self.memory_total)
+        match self.state_mode:
+            case 'speack': 
+                data :str = test_speack()
+        
+                print(data)
+            case 'to type':
+                print('de boa')
+                
     
 if __name__ == '__main__':
     while True:
         #(I := Bolmer().speack())
-        print((I := Bolmer().command))
+        print((I := Bolmer().speack()))
         print('start')
-        gc.collect()
+        #gc.collect()
